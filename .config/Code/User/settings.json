@@ -1,0 +1,95 @@
+{
+  "workbench.colorTheme": "Gruvbox Material Dark Medium",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "'Noto Mono', 'Courier New', monospace",
+  "editor.fontSize": 12,
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 1.6,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.renderWhitespace": "selection",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": false,
+    "**/.pytest_cache": true,
+    "**/__pycache__": true,
+    "**/venv": true,
+    "**/.venv": true,
+    "**/target": true
+  },
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "explorer.confirmDelete": true,
+  "explorer.confirmDragAndDrop": true,
+  "breadcrumbs.enabled": true,
+  "minimap.enabled": false,
+  "terminal.integrated.fontFamily": "'Noto Mono'",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.shell.linux": "/usr/bin/fish",
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "extensions.ignoreRecommendations": false,
+  "telemetry.telemetryLevel": "off",
+  "update.mode": "manual",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.formatOnSave": true
+  },
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "on",
+    "editor.formatOnSave": false
+  },
+  "markdown.preview.breaks": true,
+  "markdown.preview.fontSize": 13,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "debug.console.fontSize": 12,
+  "debug.console.fontFamily": "'Noto Mono'",
+  "security.workspace.trust.untrustedFiles": "open"
+}

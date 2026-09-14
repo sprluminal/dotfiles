@@ -1,0 +1,30 @@
+[
+  {
+    "key": "ctrl+grave",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "ctrl+shift+f",
+    "command": "editor.action.formatDocument"
+  },
+  {
+    "key": "ctrl+shift+p",
+    "command": "workbench.action.showCommands"
+  },
+  {
+    "key": "ctrl+k ctrl+x",
+    "command": "editor.action.trimTrailingWhitespace"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "editor.action.formatDocument"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.focusPanel"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "workbench.action.toggleSidebar"
+  }
+]

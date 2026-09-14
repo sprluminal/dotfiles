@@ -1,0 +1,15 @@
+{
+  "CUSTOM_CSS": "/* Discord Gruvbox-Material Theme */\n\n:root {\n  --gruvbox-bg0: #282828;\n  --gruvbox-bg1: #32302f;\n  --gruvbox-bg2: #45403d;\n  --gruvbox-fg0: #d4be98;\n  --gruvbox-aqua: #89b482;\n}\n\nbody {\n  background-color: var(--gruvbox-bg0) !important;\n  color: var(--gruvbox-fg0) !important;\n}\n\n/* Main content area */\n.theme-dark {\n  background-color: var(--gruvbox-bg0);\n  color: var(--gruvbox-fg0);\n}\n\n/* Sidebars and panels */\n[class*='sidebar'] {\n  background-color: var(--gruvbox-bg1) !important;\n}\n\n/* Chat messages */\n[class*='message'] {\n  color: var(--gruvbox-fg0) !important;\n}\n\n[class*='mentioned'] {\n  background-color: var(--gruvbox-bg2) !important;\n}\n\n/* Buttons */\nbutton {\n  background-color: var(--gruvbox-bg2) !important;\n  color: var(--gruvbox-fg0) !important;\n}\n\nbutton:hover {\n  background-color: var(--gruvbox-aqua) !important;\n  color: var(--gruvbox-bg0) !important;\n}\n",
+  "DARK_THEME": true,
+  "ANIMATE_VOICE_MESSAGE_BUTTONS": true,
+  "MESSAGE_DISPLAY_COMPACT": false,
+  "USE_COMPACT_SIDEBAR": false,
+  "FONT_SCALE": 1,
+  "CUSTOM_FONT": "'Noto Sans', sans-serif",
+  "TEXT_RENDERING_MODE": 1,
+  "DETECT_PLATFORM_ACCOUNTS": false,
+  "ACCESSIBILITY_DETECTION": false,
+  "REDACT_TOKENS": true,
+  "DANGEROUS_ENABLE_DEVTOOLS_ONLY_USED_BY_DISCORD_STAFF": false,
+  "PERFORMANCE_MONITORING_ENABLED": false
+}
