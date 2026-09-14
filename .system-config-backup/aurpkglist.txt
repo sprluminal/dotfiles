@@ -1,9 +1,7 @@
 advcpmv
 camset
-code
 ddcui
 debtap
-discord
 gnu-netcat
 google-java-format
 gruvbox-material-gtk-theme-git
@@ -45,8 +43,7 @@ sysz
 tatuin
 tgpt-git
 ungoogled-chromium-bin
-vesktop-bin
-vivaldi-snapshot
+vestktop-bin
 waybar-crypto
 waybar-module-pacman-updates-git
 wg-cmd

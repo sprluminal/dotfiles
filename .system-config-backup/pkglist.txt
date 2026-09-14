@@ -22,10 +22,8 @@ cool-retro-term
 ddcutil
 dhcpcd
 dialog
-discount
 dnsmasq
 docker
-dolphin
 easyeffects
 efibootmgr
 element-desktop
@@ -69,16 +67,8 @@ jdk21-openjdk
 jdk8-openjdk
 jre8-openjdk
 kanshi
-kde-cli-tools
-kde-graphics-thumbnailers
 kdeconnect
-kdialog
-kdialogd5
 keeppassxc
-kfind
-kglobalshortcuts
-kio
-kircignores
 kitty
 krita
 latex2html
@@ -159,7 +149,7 @@ sway-contrib
 swaybg
 swayidle
 swaync
-telgram-desktop
+telegram-desktop
 texinfo
 tlp-rdw
 transmission-cli
@@ -178,7 +168,6 @@ vde2
 virtualbox
 virtualbox-guest-iso
 virtualbox-host-dkms
-vivaldi
 waybar
 webkit2gtk
 webkit2gtk-4.1
@@ -192,7 +181,6 @@ wl-clipboard
 wlsunset
 xdg-desktop-portal
 xdg-desktop-portal-gtk
-xdg-desktop-portal-kde
 xf86-input-synaptics
 xf86-video-intel
 xfsprogs
