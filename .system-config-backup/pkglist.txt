@@ -149,7 +149,7 @@ sway-contrib
 swaybg
 swayidle
 swaync
-telgram-desktop
+telegram-desktop
 texinfo
 tlp-rdw
 transmission-cli
