@@ -12,6 +12,7 @@ LOG_FILE="${HOME}/.dotfiles-installation.log"
 # Check variables
 missing_files=""
 missing_packages=""
+missing_dirs=""
 
 # Declaration of message colors
 info_color=36
@@ -38,6 +39,13 @@ check_file() {
   if [ ! -f "$1" ]; then
     missing_files="$missing_files\n $1,"
     log_to_file "Missing file: $1"
+  fi
+}
+
+check_directory() {
+  if [ ! -d "$1" ]; then
+    missing_dirs="$missing_dirs\n $1,"
+    log_to_file "Missing directory: $1"
   fi
 }
 
@@ -119,7 +127,7 @@ safe_mkdir() {
 }
 
 printf "\e[36m=== Dotfiles Installation Script (Fish Shell Edition) ===\e[0m\n"
-printf "\e[36mPlease ensure:" \ "\e[0m\n"
+printf "\e[36mPlease ensure:\e[0m\n"
 printf "\e[36m  - All files are moved to your home directory (~/)\e[0m\n"
 printf "\e[36m  - Computer has active internet access\e[0m\n"
 printf "\e[36m  - Git is installed with SSH keys configured\e[0m\n"
@@ -161,12 +169,26 @@ check_file "${HOME}/.system-config-backup/tlp/tlp.conf"
 check_file "${HOME}/.system-config-backup/greetd/config.toml"
 check_file "${HOME}/.system-config-backup/reflector/reflector.conf"
 
+# Directory checks
+check_directory "${HOME}/.system-config-backup/pacman"
+check_directory "${HOME}/.system-config-backup/systemd"
+check_directory "${HOME}/.system-config-backup/tlp"
+check_directory "${HOME}/.system-config-backup/greetd"
+check_directory "${HOME}/.system-config-backup/reflector"
+check_directory "${HOME}/.config"
+
 # Packages check
 check_package "git"
 check_package "curl"
 
 if [ -n "$missing_files" ]; then
   print_log_message $error_color "missing files:$missing_files"
+  print_log_message $error_color "installation aborted."
+  exit 1
+fi
+
+if [ -n "$missing_dirs" ]; then
+  print_log_message $error_color "missing directories:$missing_dirs"
   print_log_message $error_color "installation aborted."
   exit 1
 fi
@@ -192,6 +214,24 @@ safe_cd "${HOME}"
 print_log_message $info_color "installing packages from pkglist.txt..."
 retry_command $MAX_RETRIES sudo pacman -S --noconfirm - <"${HOME}/.system-config-backup/pkglist.txt"
 print_log_message $success_color "all packages from the official repositories have been installed."
+
+# Validate critical packages were installed
+print_log_message $info_color "validating critical package installations..."
+local critical_packages=("fish" "sway" "swaybg" "waybar" "git")
+local validation_failed=0
+for pkg in "${critical_packages[@]}"; do
+  if ! pacman -Qs "^$pkg$" >/dev/null 2>&1; then
+    print_log_message $error_color "Critical package failed to install: $pkg"
+    log_to_file "ERROR: Critical package validation failed: $pkg"
+    validation_failed=1
+  else
+    print_log_message $success_color "Verified: $pkg"
+  fi
+done
+
+if [ $validation_failed -eq 1 ]; then
+  error_exit "One or more critical packages failed to install. Check the log for details."
+fi
 
 print_log_message $info_color "clearing pacman cache..."
 retry_command $MAX_RETRIES sudo pacman -Scc --noconfirm
@@ -247,13 +287,16 @@ if [ ! -d "${HOME}/.config/fish" ]; then
 fi
 
 # Update git submodules (if they exist)
+# Note: This assumes the home directory was cloned as a git repository
+# If using 'cp -r . ~' method, this section will be skipped
 if [ -d "${HOME}/.git" ]; then
   print_log_message $info_color "submodules update initiated..."
   safe_cd "${HOME}"
   retry_command $MAX_RETRIES git submodule update --init --recursive
   print_log_message $success_color "all submodules have been updated."
 else
-  print_log_message $warning_color "Not a git repository. Skipping submodule update."
+  print_log_message $warning_color "Home directory is not a git repository. Skipping submodule update (this is normal if you used 'cp -r . ~' to copy dotfiles)."
+  log_to_file "Info: Not a git repository - submodule update skipped"
 fi
 
 # Copying all pacman hooks and system configuration files
@@ -261,11 +304,17 @@ print_log_message $info_color "pacman hooks copying initiated..."
 
 safe_mkdir "/etc/pacman.d/hooks"
 
-if ! sudo cp "${HOME}/.system-config-backup/pacman/"*.hook /etc/pacman.d/hooks/ 2>/dev/null; then
-  print_log_message $warning_color "No pacman hooks found or failed to copy some hooks."
-  log_to_file "Warning: Pacman hooks copy encountered issues."
+# Check if hook files exist before copying
+if [ ! "$(ls -A "${HOME}/.system-config-backup/pacman/"*.hook 2>/dev/null)" ]; then
+  print_log_message $warning_color "No pacman hooks found at ${HOME}/.system-config-backup/pacman/"
+  log_to_file "Warning: No .hook files found in pacman backup directory"
 else
-  print_log_message $success_color "pacman hooks have been copied."
+  if ! sudo cp "${HOME}/.system-config-backup/pacman"/*.hook /etc/pacman.d/hooks/ 2>&1; then
+    print_log_message $warning_color "Failed to copy some pacman hooks."
+    log_to_file "Warning: Pacman hooks copy encountered issues."
+  else
+    print_log_message $success_color "pacman hooks have been copied."
+  fi
 fi
 
 # System config files
@@ -282,6 +331,7 @@ if [ -f "${HOME}/.system-config-backup/audio/audio.conf" ]; then
   safe_copy "${HOME}/.system-config-backup/audio/audio.conf" "/etc/security/limits.d/audio.conf"
 else
   print_log_message $warning_color "audio.conf not found. Skipping audio configuration."
+  log_to_file "Info: audio.conf not found - skipping"
 fi
 
 print_log_message $success_color "system configs have been copied."
@@ -298,10 +348,11 @@ fi
 # Download OpenRGB plugin (with error handling)
 if [ -d "${HOME}/.config/OpenRGB/plugins" ]; then
   print_log_message $info_color "downloading OpenRGB effects plugin..."
-  retry_command 2 curl -o "${HOME}/.config/OpenRGB/plugins/effects.so" https://openrgb.org/releases/plugins/effects/release_0.9/OpenRGBEffectsPlugin_0.9_Bullseye_64_f1411e1.so
+  retry_command $MAX_RETRIES curl -o "${HOME}/.config/OpenRGB/plugins/effects.so" https://openrgb.org/releases/plugins/effects/release_0.9/OpenRGBEffectsPlugin_0.9_Bullseye_64_f1411e1.so
   print_log_message $success_color "OpenRGB plugin downloaded."
 else
   print_log_message $warning_color "OpenRGB config directory not found. Skipping plugin download."
+  log_to_file "Info: OpenRGB plugins directory not found - skipping"
 fi
 
 # Enable necessary systemd services
@@ -311,7 +362,7 @@ local_services=("transmission.service" "tlp.service" "greetd.service" "swayosd-l
 local_timers=("reflector.timer")
 
 for service in "${local_services[@]}"; do
-  if systemctl list-unit-files | grep -q "$service"; then
+  if systemctl list-unit-files "$service" > /dev/null 2>&1; then
     if ! sudo systemctl enable "$service" 2>/dev/null; then
       print_log_message $warning_color "Failed to enable $service. It may not be available or already enabled."
       log_to_file "Warning: Failed to enable $service."
@@ -320,11 +371,12 @@ for service in "${local_services[@]}"; do
     fi
   else
     print_log_message $warning_color "$service not found. Skipping."
+    log_to_file "Info: $service not found on system"
   fi
 done
 
 for timer in "${local_timers[@]}"; do
-  if systemctl list-unit-files | grep -q "$timer"; then
+  if systemctl list-unit-files "$timer" > /dev/null 2>&1; then
     if ! sudo systemctl enable "$timer" 2>/dev/null; then
       print_log_message $warning_color "Failed to enable $timer. It may not be available or already enabled."
       log_to_file "Warning: Failed to enable $timer."
@@ -333,6 +385,7 @@ for timer in "${local_timers[@]}"; do
     fi
   else
     print_log_message $warning_color "$timer not found. Skipping."
+    log_to_file "Info: $timer not found on system"
   fi
 done
 
