@@ -1,6 +1,8 @@
 # Fish shell configuration
 #
-# NOTE: This is a best-effort translation of the equivalent settings
+# NOTE: This file did not exist in the sprluminal/dotfiles fork (the fork's
+# README documents a switch from zsh to fish, but no fish config was ever
+# committed). This is a best-effort translation of the equivalent settings
 # from upstream's .zshenv/.zshrc into fish syntax, generated when merging
 # the fork's intended changes back onto the complete CelticBoozer/dotfiles
 # base. Please review and adjust to taste.

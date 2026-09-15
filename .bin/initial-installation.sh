@@ -212,7 +212,7 @@ retry_command $MAX_RETRIES sudo pacman -Sy
 
 safe_cd "${HOME}"
 print_log_message $info_color "installing packages from pkglist.txt..."
-retry_command $MAX_RETRIES sudo pacman -S --noconfirm - <"${HOME}/.system-config-backup/pkglist.txt"
+retry_command $MAX_RETRIES sudo pacman -S --needed --noconfirm - <"${HOME}/.system-config-backup/pkglist.txt"
 print_log_message $success_color "all packages from the official repositories have been installed."
 
 # Validate critical packages were installed
@@ -261,7 +261,7 @@ if [ -f "${HOME}/.system-config-backup/aurpkglist.txt" ]; then
   
   # Installing AUR packages
   print_log_message $info_color "AUR packages installation initiated..."
-  retry_command $MAX_RETRIES paru -S --noconfirm - <"${HOME}/.system-config-backup/aurpkglist.txt"
+  retry_command $MAX_RETRIES paru -S --needed --noconfirm - <"${HOME}/.system-config-backup/aurpkglist.txt"
   print_log_message $success_color "all packages from AUR have been installed."
   
   retry_command $MAX_RETRIES paru -Sccd --noconfirm

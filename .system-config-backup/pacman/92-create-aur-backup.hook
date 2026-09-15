@@ -7,4 +7,4 @@ Target = *
 [Action]
 Description = Renew AUR packages list...
 When = PostTransaction
-Exec = /bin/sh -c '(pacman -Qqm) > /home/stiaan/.system-config-backup/aurpkglist.txt'
+Exec = /bin/sh -c 'u="${SUDO_USER:-$(logname 2>/dev/null)}"; h="$(getent passwd "$u" 2>/dev/null | cut -d: -f6)"; [ -n "$h" ] || exit 0; (pacman -Qqm) > "$h/.system-config-backup/aurpkglist.txt"'

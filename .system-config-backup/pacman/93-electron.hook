@@ -8,4 +8,4 @@ Target = *
 [Action]
 Description = Update electron symlinks...
 When = PostTransaction
-Exec = /bin/sh -c 'sh /home/stiaan/.bin/update-electron-symlinks.sh'
+Exec = /bin/sh -c 'u="${SUDO_USER:-$(logname 2>/dev/null)}"; h="$(getent passwd "$u" 2>/dev/null | cut -d: -f6)"; [ -n "$h" ] || exit 0; sh "$h/.bin/update-electron-symlinks.sh" "$h"'
