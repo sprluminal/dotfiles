@@ -6,13 +6,6 @@ Personal Arch Linux dotfiles for a **Sway** desktop, themed with
 shell switched from Zsh to **Fish**, an enhanced installation script, and a
 few extra app configs.
 
-This repository was reassembled from the fork so that it is a **complete**,
-installable set of dotfiles again: the fork only contained the files that were
-actually changed, so everything else (Sway/Waybar/kitty/mako/yazi/rofi
-configs, wallpapers, icons, the Neovim config, system config backups, etc.)
-has been brought back in from upstream, with the fork's changes re-applied on
-top.
-
 ## :stars: Key differences from upstream
 
 - **Fish** instead of Zsh (`ohmyzsh` removed, `.zshrc`/`.zshenv`/`.zsh_custom`
