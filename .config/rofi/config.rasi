@@ -1,0 +1,115 @@
+/* --------------
+   Core Behavior
+   -------------- */
+configuration {
+  threads: 0;
+  case-sensitive: false;
+  normalize-match: true;
+  cycle: true;
+  scroll-method: 1;
+  show-icons: true;
+  no-lazy-grab: true;
+
+  /* ---------------
+     Modes & Labels
+     --------------- */
+  modi: "calc,Clipboard:~/.bin/cliphist-rofi.sh,drun,power-menu:rofi-power-menu";
+  display-calc: "Calculator";
+  display-drun: "Application";
+
+  /* --------------
+     Window/Layout
+     -------------- */
+  location: 0;
+  sidebar-mode: true;
+  hover-select: true;
+  eh: 1;
+  terminal: "kitty";
+}
+
+@theme "/dev/null"
+
+/* -----------
+   Base Style
+   ----------- */
+* {
+  background-color: #32302f;
+  font-family:     "JetBrains Mono";
+  text-color:      #d4be98;
+}
+
+/* ------------------
+   Window Appearance
+   ------------------ */
+window {
+  border:         0.2%;
+  border-radius:  10px;
+  transparency:  "real";
+  width:          35%;
+  height:         500px;
+}
+
+/* ------------------
+   Scrollbar Styling
+   ------------------ */
+scrollbar {
+  enabled:           true;
+  background-color:  #252423;
+  handle-color:      #3c3836;
+  border-color:      #000000;
+}
+
+/* ------------
+   List Layout
+   ------------ */
+listview {
+  columns:        1;
+  fixed-height:   false;
+  dynamic:        true;
+  scrollbar:      true;
+  spacing:        10px;
+}
+
+/* --------------
+   Input Padding
+   -------------- */
+prompt, entry {
+  padding: 10px;
+}
+
+/* ----------------
+   Message Padding
+   ---------------- */
+textbox {
+  padding: 20px;
+}
+
+/* ----------------
+   Element Padding
+   ---------------- */
+element-text, button, listview {
+  padding: 5px;
+}
+
+/* ------------------------
+   Selected Item Highlight
+   ------------------------ */
+element.selected {
+  background-color: #665c54;
+}
+
+/* ----------------
+   Selected Button
+   ---------------- */
+button.selected {
+  background-color: #e78a4e;
+  text-color:      #252423;
+}
+
+/* ----------------------
+   Inherit Global Colors
+   ---------------------- */
+element-text, element-icon {
+  background-color: inherit;
+  text-color:       inherit;
+}

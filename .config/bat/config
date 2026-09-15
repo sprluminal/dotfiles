@@ -1,0 +1,39 @@
+# NOTE: bat — A modern `cat` clone with syntax highlighting & Git integration
+# INFO: Full docs: https://github.com/sharkdp/bat
+
+# --------------------
+# Appearance & Themes
+# --------------------
+
+# Set theme
+--theme="gruvbox-dark"
+
+# Style components to display:
+# numbers  → show line numbers
+# changes  → mark Git-modified lines
+# header   → display filename header
+# grid     → draw borders around the text
+--style="numbers,changes,header,grid"
+
+# Enable italics.
+--italic-text="always"
+
+# --------------------------
+# Whitespace & Line Control
+# --------------------------
+
+# Squeeze multiple empty lines into one.
+--squeeze-blank
+
+# Limit the maximum number of consecutive blank lines.
+--squeeze-limit=2
+
+# Preserve tabs exactly as in file, or expand them to N spaces.
+--tabs=2
+
+# ----------------
+# Paging Behavior
+# ----------------
+
+# Automatically use a pager (`less -RF`) only when output is larger than one screen.
+--paging="auto"

@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Renew AUR packages list...
+When = PostTransaction
+Exec = /bin/sh -c '(pacman -Qqm) > /home/stiaan/.system-config-backup/aurpkglist.txt'

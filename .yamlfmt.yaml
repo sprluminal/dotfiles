@@ -1,0 +1,9 @@
+---
+# https://github.com/google/yamlfmt config file
+# Simply copy this file to the root of the project
+continue_on_error: true
+formatter:
+  include_document_start: true
+  retain_line_breaks: true
+  retain_line_breaks_single: true
+  max_line_length: 100

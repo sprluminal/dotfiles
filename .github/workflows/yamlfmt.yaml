@@ -1,0 +1,27 @@
+---
+name: yamlfmt
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/*.yaml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**/*.yaml'
+jobs:
+  format_check:
+    name: Check yaml with yamlfmt
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install go
+        uses: actions/setup-go@v5
+      - name: Install yamlfmt
+        run: go install github.com/google/yamlfmt/cmd/yamlfmt@latest
+      - name: Run yamlfmt
+        run: yamlfmt -lint .

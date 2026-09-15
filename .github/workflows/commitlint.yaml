@@ -1,0 +1,19 @@
+---
+name: commitlint
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  commit_check:
+    name: Check commit message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run conventional commit checks
+        uses: wagoid/commitlint-github-action@v6

@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Remove
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Update electron symlinks...
+When = PostTransaction
+Exec = /bin/sh -c 'sh /home/stiaan/.bin/update-electron-symlinks.sh'

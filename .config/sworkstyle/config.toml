@@ -1,0 +1,86 @@
+# NOTE: Maps application identifiers (executable or window-title regex)
+# to icon glyphs. Specific patterns must precede more general ones.
+#
+# NOTE: To add a new mapping:
+# • Under [matching], add 'app-id' = 'glyph'
+# • For regex, wrap the key in forward slashes: '/pattern/' = 'glyph'
+
+# The string used between multiple icons (if a match yields >1 glyph)
+separator = ' '
+
+[matching]
+
+# ---------------
+# JetBrains IDEs
+# ---------------
+'jetbrains-idea-ce' = ''
+'jetbrains-idea' = ''
+
+# -------------------------
+# Browsers & Private Modes
+# -------------------------
+'firefox-developer-edition' = '󰈹'
+'/Google Chrome/' = ''
+'/Private Browsing/' = '󱀣'
+'/Picture-in-Picture/' = '󰹗'
+
+# -----------------------
+# Communication & Social
+# -----------------------
+'org.telegram.desktop' = ''
+'Skype' = '󰒯'
+'/Element/' = '󰯸'
+'vesktop' = ''
+
+# --------------------
+# Terminals & Editors
+# --------------------
+'/nvim ?\w*/' = ''
+'/vim ?\w*/' = ''
+'/yazi ?\w*/' = ''
+'kitty' = ''
+'cool-retro-term.cool-retro-term' = ''
+
+# --------------------
+# System & Monitoring
+# --------------------
+'/btop/' = ''
+'/nmtui/' = ''
+'/pulsemixer/' = ''
+
+# --------------------
+# Development & Tools
+# --------------------
+'deno' = ''
+'Postman' = ''
+
+# ----------------------
+# Media & Entertainment
+# ----------------------
+'spotube' = ''
+'mpv' = ''
+'steam' = ''
+
+# ----------------------
+# Productivity & Office
+# ----------------------
+'obsidian' = ''
+'org.pwmt.zathura' = ''
+'libreoffice-startcenter' = '󰹯'
+'libreoffice-writer' = ''
+'libreoffice-calc' = ''
+'libreoffice-impress' = ''
+'libreoffice-draw' = ''
+'libreoffice-base' = ''
+'soffice' = ''
+
+# ----------------------------
+# Graphics & Audio Processing
+# ----------------------------
+'krita' = ''
+'com.github.wwmm.easyeffects' = '󰥠'
+
+# ---------------------
+# Security & Passwords
+# ---------------------
+'org.keepassxc.KeePassXC' = '󱕴'

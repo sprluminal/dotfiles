@@ -1,0 +1,26 @@
+---
+name: markdownlint
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/*.md'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**/*.md'
+jobs:
+  lint:
+    name: Check markdown with markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run markdownlint
+        uses: nosborn/github-action-markdown-cli@v3.3.0
+        with:
+          files: .
+          dot: true

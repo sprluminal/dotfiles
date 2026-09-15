@@ -1,0 +1,26 @@
+---
+name: shellcheck
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**/*.sh'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**/*.sh'
+jobs:
+  lint:
+    name: Check shell scripts with shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          ignore_names: >-
+            .zshrc  .profile

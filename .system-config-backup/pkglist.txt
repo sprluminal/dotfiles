@@ -68,7 +68,7 @@ jdk8-openjdk
 jre8-openjdk
 kanshi
 kdeconnect
-keeppassxc
+keepassxc
 kitty
 krita
 latex2html

@@ -1,0 +1,17 @@
+# Win key, as mod key
+set $mod Mod4
+
+# Your preferred terminal emulator
+set $term kitty
+
+# Application launcher
+set $menu rofi -show drun
+
+# Floating mod key
+floating_modifier $mod normal
+
+# Disable focus on mouse moves
+focus_follows_mouse no
+
+include /etc/sway/config.d/*
+include config.d/*

@@ -43,7 +43,7 @@ sysz
 tatuin
 tgpt-git
 ungoogled-chromium-bin
-vestktop-bin
+vesktop-bin
 waybar-crypto
 waybar-module-pacman-updates-git
 wg-cmd

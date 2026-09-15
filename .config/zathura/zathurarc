@@ -1,0 +1,31 @@
+include gruvbox-material-theme.conf # Set theme theme developed by @Celtic.Boozer
+set font "ttf-hack 10"              # Monospace font with excellent Unicode support
+
+# -------------------
+# Interface Components
+# -------------------
+set statusbar-h-padding 10          # Horizontal spacing to avoid cramped text
+set statusbar-v-padding 5           # Vertical padding for better aesthetics
+
+# -------------------
+# Document Interaction
+# -------------------
+set incremental-search "true"       # Enables live search-as-you-type for instant feedback
+
+# -------------------
+# Workflow & Navigation
+# -------------------
+set page-padding 10                 # Margin around pages, providing a cleaner look
+set show-directories "true"         # Display directory entries for easier navigation
+set show-hidden "true"              # Show dotfiles to ensure no file is missed
+set show-recent 5                   # Limit recent files list to the 5 most recent for clarity
+set guioptions vs                   # 'v' and 's' option: both vertical and horizontal scrollbars visible
+set smooth-scroll "true"            # Enable animated scrolling for a smoother user experience
+
+# -------------------
+# System Integration
+# -------------------
+set selection-clipboard clipboard   # Use system clipboard for copy-paste operations
+set database sqlite                 # Use SQLite for the internal database (more reliable than Berkeley DB)
+set window-title-basename "true"    # Display only the filename in the window title for a cleaner look
+set autosave-interval 300           # Automatically save session every 300 seconds (5 minutes)
