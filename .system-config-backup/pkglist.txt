@@ -122,15 +122,19 @@ pipewire-pulse
 pkgconf
 playerctl
 polkit
+prettier
 pulsemixer
+python-debugpy
 rate-mirrors
 reflector
 ripgrep
 rofi
 rofi-calc
+ruff
 rust
 scribus
 sed
+shellcheck
 shfmt
 slurp
 steam
@@ -146,6 +150,7 @@ texinfo
 tlp-rdw
 transmission-cli
 tree
+tree-sitter-cli
 ttf-dejavu
 ttf-hack
 ttf-jetbrains-mono
