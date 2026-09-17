@@ -8,7 +8,7 @@ fi
 
 if [[ -z "$TEMP" ]]; then
   CLASS="unknown"
-  FORMAT="<span color='#d4be98' bgcolor='#928374'>  </span> N/A°C"
+  FORMAT="<span color='#ebdbb2' bgcolor='#928374'>  </span> N/A°C"
   printf '{"text":"%s","class":"%s"}\n' "$FORMAT" "$CLASS"
   exit 0
 fi
@@ -17,10 +17,10 @@ TEMP_INT=$(printf "%.0f" "$TEMP")
 
 if (( TEMP_INT >= 70 )); then
   CLASS="critical"
-  FORMAT="<span color='#32302f' bgcolor='#cc241d'>  </span> ${TEMP_INT}°C"
+  FORMAT="<span color='#1d2021' bgcolor='#fb4934'>  </span> ${TEMP_INT}°C"
 else
   CLASS="normal"
-  FORMAT="<span color='#32302f' bgcolor='#d8a657'> 󰴈 </span> ${TEMP_INT}°C"
+  FORMAT="<span color='#1d2021' bgcolor='#fabd2f'> 󰴈 </span> ${TEMP_INT}°C"
 fi
 
 printf '{"text":"%s","class":"%s"}\n' "$FORMAT" "$CLASS"

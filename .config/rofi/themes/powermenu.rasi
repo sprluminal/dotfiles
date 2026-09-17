@@ -1,16 +1,12 @@
+@import "~/.config/rofi/themes/colors.rasi"
+
 * {
   margin : 0;
   padding : 0;
   spacing : 0;
-  dark : #32302f;
-  red : #ea6962;
-  red-alt : #cc241d;
-  yellow : #d8a657;
-  green : #a9b665;
-  cream : #d4be98;
   transparent : #00000000;
   font : "my-queue ExtraBold 22";
-  text-color : @dark;
+  text-color : @bg0-hard;
 }
 
 window {
@@ -27,32 +23,32 @@ listview {
   columns : 5;
   margin : 0;
   padding : 5;
-  background-color : @green;
+  background-color : @aqua-bright;
   border : 8;
-  border-color : @dark;
+  border-color : @bg0-hard;
   cycle : false;
 }
 
 element {
-  background-color : @dark;
+  background-color : @bg0-hard;
   padding : 3;
   border : 4;
-  border-color : @dark;
+  border-color : @bg0-hard;
   margin : 4 4;
 }
 
 element-text {
-  text-color : @dark;
+  text-color : @bg0-hard;
   padding : 8 0;
   margin : 0;
-  background-color : @yellow;
+  background-color : @yellow-bright;
   vertical-align : 0.5;
   horizontal-align : 0.5;
-  border-color : @dark;
+  border-color : @bg0-hard;
 }
 
 element-text selected {
-  border-color : @dark;
+  border-color : @bg0-hard;
   margin : 0;
-  background-color : @red;
+  background-color : @red-bright;
 }

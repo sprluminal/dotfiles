@@ -1,26 +1,4 @@
-/* ===== COLORS (matched to .config/sway/config.d/theme.conf) ===== */
-@define-color bg #32302f;
-@define-color fg #d4be98;
-@define-color black #252423;
-@define-color white-soft #d4be98;
-
-@define-color red #ea6962;
-@define-color red-dark #cc241d;
-
-@define-color orange #e78a4e;
-@define-color yellow #f6c657;
-@define-color yellow-soft #d8a657;
-
-@define-color green #8ec07c;
-@define-color green-dark #689d68;
-
-@define-color blue #83a598;
-@define-color blue-dark #458588;
-
-@define-color pink #d3869b;
-@define-color pink-dark #b26286;
-
-@define-color gray #928374;
+@import url("colors.css");
 
 /* ===== GLOBAL ===== */
 * {
@@ -35,7 +13,7 @@
 }
 
 window#waybar {
-  color: @fg;
+  color: @fg1;
   background: none;
   font-family: my-queue;
   font-size: 12pt;
@@ -46,7 +24,7 @@ window#waybar {
 .modules-center,
 .modules-right {
   padding: 3pt;
-  background: @bg;
+  background: @bg0;
 }
 
 /* ===== COMMON PADDING ===== */
@@ -60,7 +38,6 @@ window#waybar {
 #custom-memory,
 #pulseaudio,
 #pulseaudio.muted,
-#bluetooth,
 #battery,
 #battery.critical,
 #battery.warning,
@@ -71,17 +48,17 @@ window#waybar {
 
 /* ===== MODULES ===== */
 #custom-launcher {
-  color: @black;
-  border: 2pt solid @blue-dark;
-  background: @blue;
+  color: @bg0_hard;
+  border: 2pt solid @blue;
+  background: @blue_bright;
   padding: 0pt 6pt;
 }
 
 /* ===== WORKSPACES ===== */
 #workspaces button {
-  color: @white-soft;
-  background: @bg;
-  border: 2pt solid @white-soft;
+  color: @fg1;
+  background: @bg0;
+  border: 2pt solid @fg1;
   margin-right: 3pt;
   min-width: 15pt;
   padding: 0 3.75pt;
@@ -92,49 +69,49 @@ window#waybar {
 }
 
 #workspaces button:hover {
-  color: @bg;
-  background: @pink;
-  border-color: @pink-dark;
+  color: @bg0_hard;
+  background: @purple_bright;
+  border-color: @purple;
 }
 
 #workspaces button.visible,
 #workspaces button.visible:hover {
-  color: @black;
-  border-color: @green-dark;
-  background: @green;
+  color: @bg0_hard;
+  border-color: @aqua;
+  background: @aqua_bright;
 }
 
 #workspaces button.urgent {
-  color: @bg;
-  border-color: @red-dark;
-  background: @red;
+  color: @bg0_hard;
+  border-color: @red;
+  background: @red_bright;
 }
 
 /* ===== INDIVIDUAL MODULE STYLES ===== */
 #window {
-  border: 2pt solid @pink;
+  border: 2pt solid @purple_bright;
 }
 
 #tray {
-  border: 2pt solid @orange;
+  border: 2pt solid @orange_bright;
   padding: 0 6pt;
 }
 
 #disk {
-  border: 2pt solid @red;
+  border: 2pt solid @aqua_bright;
 }
 
 #cpu {
-  border: 2pt solid @orange;
+  border: 2pt solid @orange_bright;
 }
 
 #custom-cpu_temp {
-  border: 2pt solid @yellow-soft;
+  border: 2pt solid @yellow_bright;
 }
 
 #custom-cpu_temp.critical {
-  color: @red-dark;
-  border: 2pt solid @red-dark;
+  color: @red_bright;
+  border: 2pt solid @red_bright;
 }
 
 #custom-cpu_temp.unknown {
@@ -142,15 +119,15 @@ window#waybar {
 }
 
 #backlight {
-  border: 2pt solid @yellow;
+  border: 2pt solid @yellow_bright;
 }
 
 #custom-memory {
-  border: 2pt solid @blue-dark;
+  border: 2pt solid @blue;
 }
 
 #pulseaudio {
-  border: 2pt solid @blue;
+  border: 2pt solid @blue_bright;
 }
 
 #pulseaudio.muted {
@@ -158,51 +135,42 @@ window#waybar {
   color: @red;
 }
 
-#bluetooth {
-  border: 2pt solid @pink;
-}
-
-#bluetooth.disabled,
-#bluetooth.off {
-  color: @gray;
-}
-
 #battery {
-  border: 2pt solid @green-dark;
+  border: 2pt solid @aqua_bright;
 }
 
 #battery.critical {
-  border: 2pt solid @red-dark;
+  border: 2pt solid @red_bright;
 }
 
 #battery.warning {
-  border: 2pt solid @orange;
+  border: 2pt solid @orange_bright;
 }
 
 #clock {
-  border: 2pt solid @green;
+  border: 2pt solid @aqua_bright;
 }
 
 #network {
-  border: 2pt solid @pink;
+  border: 2pt solid @purple_bright;
 }
 
 #network.disconnected {
-  border: 2pt solid @red-dark;
+  border: 2pt solid @red;
 }
 
 #mode {
-  color: @blue;
-  border: 2pt solid @blue;
+  color: @blue_bright;
+  border: 2pt solid @blue_bright;
   padding: 0 7.5pt;
 }
 
 /* ===== TOOLTIP ===== */
 tooltip {
-  background: @bg;
-  border: 1pt solid @black;
+  background: @bg0;
+  border: 1pt solid @bg0_hard;
 }
 
 tooltip label {
-  color: @fg;
+  color: @fg1;
 }
