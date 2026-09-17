@@ -146,4 +146,5 @@ what happened.
 ## :heart: Acknowledgements
 
 Base configuration and most of the heavy lifting: [CelticBoozer/dotfiles](https://github.com/CelticBoozer/dotfiles).
+
 Inspiration for the Rofi and Waybar configs: [mister-grimm96/swaystation](https://github.com/mister-grimm96/swaystation)
