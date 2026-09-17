@@ -126,6 +126,23 @@ safe_mkdir() {
   log_to_file "Created directory: $directory"
 }
 
+# Install packages from a list file.
+# NOTE: these are defined as functions (rather than inlined with a "< file"
+# redirection on the retry_command call) so that each retry attempt reopens
+# the file fresh. pacman/paru read the whole target list from stdin before
+# doing anything else, so a failed first attempt leaves stdin at EOF; if the
+# redirection were attached to retry_command itself, every retry after the
+# first would see an empty target list and fail with "no targets specified".
+install_pkglist() {
+  local pkglist_file="$1"
+  sudo pacman -S --needed --noconfirm - <"$pkglist_file"
+}
+
+install_aur_pkglist() {
+  local pkglist_file="$1"
+  paru -S --needed --noconfirm - <"$pkglist_file"
+}
+
 printf "\e[36m=== Dotfiles Installation Script (Fish Shell Edition) ===\e[0m\n"
 printf "\e[36mPlease ensure:\e[0m\n"
 printf "\e[36m  - All files are moved to your home directory (~/)\e[0m\n"
@@ -156,30 +173,42 @@ print_log_message $info_color "system installation initiated..."
 print_log_message $info_color "prerequisites check..."
 
 # Files check
-check_file "${HOME}/.system-config-backup/pacman/pacman.conf"
-check_file "${HOME}/.system-config-backup/pkglist.txt"
-check_file "${HOME}/.system-config-backup/pacman/91-create-backup.hook"
-check_file "${HOME}/.system-config-backup/pacman/92-create-aur-backup.hook"
-check_file "${HOME}/.system-config-backup/pacman/93-electron.hook"
-check_file "${HOME}/.system-config-backup/pacman/94-check-pacnew.hook"
-check_file "${HOME}/.system-config-backup/pacman/95-backup-configs.hook"
-check_file "${HOME}/.system-config-backup/systemd/logind.conf"
-check_file "${HOME}/.system-config-backup/systemd/resolved.conf"
-check_file "${HOME}/.system-config-backup/tlp/tlp.conf"
-check_file "${HOME}/.system-config-backup/greetd/config.toml"
-check_file "${HOME}/.system-config-backup/reflector/reflector.conf"
+required_files=(
+  "${HOME}/.system-config-backup/pacman/pacman.conf"
+  "${HOME}/.system-config-backup/pkglist.txt"
+  "${HOME}/.system-config-backup/pacman/91-create-backup.hook"
+  "${HOME}/.system-config-backup/pacman/92-create-aur-backup.hook"
+  "${HOME}/.system-config-backup/pacman/93-electron.hook"
+  "${HOME}/.system-config-backup/pacman/94-check-pacnew.hook"
+  "${HOME}/.system-config-backup/pacman/95-backup-configs.hook"
+  "${HOME}/.system-config-backup/systemd/logind.conf"
+  "${HOME}/.system-config-backup/systemd/resolved.conf"
+  "${HOME}/.system-config-backup/tlp/tlp.conf"
+  "${HOME}/.system-config-backup/greetd/config.toml"
+  "${HOME}/.system-config-backup/reflector/reflector.conf"
+)
+for f in "${required_files[@]}"; do
+  check_file "$f"
+done
 
 # Directory checks
-check_directory "${HOME}/.system-config-backup/pacman"
-check_directory "${HOME}/.system-config-backup/systemd"
-check_directory "${HOME}/.system-config-backup/tlp"
-check_directory "${HOME}/.system-config-backup/greetd"
-check_directory "${HOME}/.system-config-backup/reflector"
-check_directory "${HOME}/.config"
+required_dirs=(
+  "${HOME}/.system-config-backup/pacman"
+  "${HOME}/.system-config-backup/systemd"
+  "${HOME}/.system-config-backup/tlp"
+  "${HOME}/.system-config-backup/greetd"
+  "${HOME}/.system-config-backup/reflector"
+  "${HOME}/.config"
+)
+for d in "${required_dirs[@]}"; do
+  check_directory "$d"
+done
 
 # Packages check
-check_package "git"
-check_package "curl"
+required_packages=("git" "curl")
+for pkg in "${required_packages[@]}"; do
+  check_package "$pkg"
+done
 
 if [ -n "$missing_files" ]; then
   print_log_message $error_color "missing files:$missing_files"
@@ -212,13 +241,13 @@ retry_command $MAX_RETRIES sudo pacman -Sy
 
 safe_cd "${HOME}"
 print_log_message $info_color "installing packages from pkglist.txt..."
-retry_command $MAX_RETRIES sudo pacman -S --needed --noconfirm - <"${HOME}/.system-config-backup/pkglist.txt"
+retry_command $MAX_RETRIES install_pkglist "${HOME}/.system-config-backup/pkglist.txt"
 print_log_message $success_color "all packages from the official repositories have been installed."
 
 # Validate critical packages were installed
 print_log_message $info_color "validating critical package installations..."
-local critical_packages=("fish" "sway" "swaybg" "waybar" "git")
-local validation_failed=0
+critical_packages=("fish" "sway" "swaybg" "waybar" "git")
+validation_failed=0
 for pkg in "${critical_packages[@]}"; do
   if ! pacman -Qs "^$pkg$" >/dev/null 2>&1; then
     print_log_message $error_color "Critical package failed to install: $pkg"
@@ -261,7 +290,7 @@ if [ -f "${HOME}/.system-config-backup/aurpkglist.txt" ]; then
   
   # Installing AUR packages
   print_log_message $info_color "AUR packages installation initiated..."
-  retry_command $MAX_RETRIES paru -S --needed --noconfirm - <"${HOME}/.system-config-backup/aurpkglist.txt"
+  retry_command $MAX_RETRIES install_aur_pkglist "${HOME}/.system-config-backup/aurpkglist.txt"
   print_log_message $success_color "all packages from AUR have been installed."
   
   retry_command $MAX_RETRIES paru -Sccd --noconfirm
