@@ -19,8 +19,8 @@
   ],
 
   "custom/launcher": {
-    "format": "<span></span>",
-    "on-click": "rofi -show drun",
+    "format": "<span>󰣇</span>",
+    "on-click": "rofi -show drun -show-icons -disable-history",
     "on-click-right": "~/.bin/power-menu.sh",
     "escape": true,
     "tooltip": false
@@ -47,7 +47,7 @@
   },
 
   "sway/window": {
-    "format": "<span color='#1d2021' bgcolor='#d3869b'> 󰣆 </span> {app_id}",
+    "format": "<span color='#d3869b'> 󰣆 </span>{app_id}",
     "separate-outputs": true,
     "tooltip": false
   },
@@ -63,12 +63,12 @@
   },
 
   "disk": {
-    "format": "<span color='#1d2021' bgcolor='#8ec07c'>  </span> {free}",
+    "format": "<span color='#8ec07c'>  </span>{free}",
     "interval": 20
   },
 
   "cpu": {
-    "format": "<span color='#1d2021' bgcolor='#fe8019'>  </span> {usage}%",
+    "format": "<span color='#fe8019'>  </span>{usage}%",
     "tooltip": false,
     "interval": 1,
     "on-click": "kitty --class=floating_waybar -e btop"
@@ -83,7 +83,7 @@
   },
 
   "backlight": {
-    "format": "<span color='#1d2021' bgcolor='#fabd2f'> 󰞏 </span> {percent}%",
+    "format": "<span color='#fabd2f'> 󰞏 </span>{percent}%",
     "tooltip": false,
     "on-click-right": "~/.bin/wlsunset-toggle.sh"
   },
@@ -92,15 +92,15 @@
     "exec": "~/.config/waybar/scripts/memory_usage.sh",
     "interval": 2,
     "return-type": "json",
-    "format": "<span color='#1d2021' bgcolor='#458588'>  </span> {}"
+    "format": "<span color='#458588'>  </span>{}"
   },
 
   "pulseaudio": {
     "scroll-step": 1,
-    "format": "<span color='#1d2021' bgcolor='#83a598'>  </span> {volume}%",
-    "format-muted": "<span color='#1d2021' bgcolor='#cc241d'>  </span> {volume}%",
-    "format-bluetooth": "<span color='#1d2021' bgcolor='#83a598'> 󰂰 </span> {volume}%",
-    "format-bluetooth-muted": "<span color='#1d2021' bgcolor='#cc241d'> 󰂲 </span> {volume}%",
+    "format": "<span color='#83a598'>  </span>{volume}%",
+    "format-muted": "<span color='#fb4934'>  </span>{volume}%",
+    "format-bluetooth": "<span color='#83a598'> 󰂰 </span>{volume}%",
+    "format-bluetooth-muted": "<span color='#fb4934'> 󰂲 </span>{volume}%",
     "format-source": "{volume}% ",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "kitty --class=floating_waybar -e pulsemixer",
@@ -120,24 +120,24 @@
       "critical": 20
     },
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "format": "<span color='#1d2021' bgcolor='#689d6a'> {icon} </span> {capacity}%",
-    "format-critical": "<span color='#1d2021' bgcolor='#fb4934'> {icon} </span> {capacity}%!!",
-    "format-warning": "<span color='#1d2021' bgcolor='#fe8019'> {icon} </span> {capacity}%",
-    "format-full": "<span color='#1d2021' bgcolor='#689d6a'> {icon} </span> {capacity}%",
-    "format-charging": "<span color='#1d2021' bgcolor='#689d6a'> 󰂅 </span> {capacity}%",
-    "format-charging-warning": "<span color='#1d2021' bgcolor='#fe8019'> 󰢝 </span> {capacity}%",
-    "format-charging-critical": "<span color='#1d2021' bgcolor='#fb4934'> 󰢜 </span> {capacity}%",
-    "format-plugged": "<span color='#1d2021' bgcolor='#689d6a'> 󰂅 </span> {capacity}%",
-    "format-alt": "<span color='#1d2021' bgcolor='#689d6a'> 󱧥 </span> {time}",
+    "format": "<span color='#8ec07c'> {icon} </span>{capacity}%",
+    "format-critical": "<span color='#fb4934'> {icon} </span>{capacity}%!!",
+    "format-warning": "<span color='#fe8019'> {icon} </span>{capacity}%",
+    "format-full": "<span color='#8ec07c'> {icon} </span>{capacity}%",
+    "format-charging": "<span color='#8ec07c'> 󰂅 </span>{capacity}%",
+    "format-charging-warning": "<span color='#fe8019'> 󰢝 </span>{capacity}%",
+    "format-charging-critical": "<span color='#fb4934'> 󰢜 </span>{capacity}%",
+    "format-plugged": "<span color='#8ec07c'> 󰂅 </span>{capacity}%",
+    "format-alt": "<span color='#8ec07c'> 󱧥 </span>{time}",
     "tooltip": false
   },
 
   "network": {
     "interval": 2,
-    "format": "<span color='#1d2021' bgcolor='#d3869b'> 󱘖 </span> {bandwidthDownBits}",
-    "format-wifi": "<span color='#1d2021' bgcolor='#d3869b'> {icon} </span> {bandwidthDownBits}",
-    "format-ethernet": "<span color='#1d2021' bgcolor='#d3869b'> 󰈀 </span> {bandwidthDownBits}",
-    "format-disconnected": "<span color='#1d2021' bgcolor='#cc241d'> ⚠ </span> disconnected",
+    "format": "<span color='#d3869b'> 󱘖 </span>{bandwidthDownBits}",
+    "format-wifi": "<span color='#d3869b'> {icon} </span>{bandwidthDownBits}",
+    "format-ethernet": "<span color='#d3869b'> 󰈀 </span>{bandwidthDownBits}",
+    "format-disconnected": "<span color='#fb4934'> ⚠ </span>disconnected",
     "format-icons": ["󰤫", "󰤟", "󰤢", "󰤥", "󰤨"],
     "tooltip": true,
     "tooltip-format": "{essid}\n{ipaddr}/{cidr}",
@@ -148,8 +148,8 @@
   },
 
   "clock": {
-    "format": "<span color='#1d2021' bgcolor='#8ec07c'>  </span> {:%a %d | %H:%M}",
-    "format-alt": "<span color='#1d2021' bgcolor='#8ec07c'>  </span> {:%A, %d %b, %Y}",
+    "format": "<span color='#8ec07c'>  </span>{:%a %d | %H:%M}",
+    "format-alt": "<span color='#8ec07c'>  </span>{:%A, %d %b, %Y}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "month",

@@ -114,6 +114,7 @@ openrgb
 openssh
 pacman
 pacman-contrib
+papirus-icon-theme
 parallel
 patch
 pipewire-alsa

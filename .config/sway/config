@@ -5,7 +5,7 @@ set $mod Mod4
 set $term kitty
 
 # Application launcher
-set $menu rofi -show drun
+set $menu rofi -show drun -show-icons -disable-history
 
 # Floating mod key
 floating_modifier $mod normal
