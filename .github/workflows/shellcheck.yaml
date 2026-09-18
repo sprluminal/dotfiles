@@ -4,12 +4,12 @@ name: shellcheck
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '**/*.sh'
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - '**/*.sh'
 jobs:

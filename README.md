@@ -15,9 +15,9 @@ few extra app configs.
 - Package installation uses `pacman -S --needed` / `paru -S --needed`, so
   re-running the installer (or the same `pkglist.txt`/`aurpkglist.txt` after
   an interrupted run) won't reinstall packages you already have.
-- `pkglist.txt` trimmed from 193 to 168 packages: removed all six
-  JDK/JRE variants, the unused `python-*` userland packages (nothing in this
-  repo's own scripts needs them), VirtualBox/QEMU (`virtualbox`,
+- The package manifests are intentionally curated: they omit all six JDK/JRE
+  variants, the unused `python-*` userland packages (nothing in this repo's
+  own scripts needs them), VirtualBox/QEMU (`virtualbox`,
   `virtualbox-guest-iso`, `virtualbox-host-dkms`, `qemu-desktop`, `vde2`),
   and a few other narrow dev-tool packages (`docker`, `lazydocker`,
   `postgresql`, `maven`, `groovy`, `latex2html`, `sqlfluff`). If you actually
@@ -40,9 +40,8 @@ few extra app configs.
   Its leader keys follow `.ideavimrc` so the two stay consistent. See
   [.config/nvim/.github/README.md](.config/nvim/.github/README.md).
 - Extra app configs not present upstream: VS Code (`.config/Code/User`),
-  Discord (`.config/discord`), Dolphin gruvbox-material theme
-  (`.config/dolphin`), and a Vivaldi gruvbox-material stylesheet
-  (`.config/vivaldi`).
+  Discord (`.config/discord`), and a Dolphin gruvbox-material theme
+  (`.config/dolphin`).
 
 ## :brain: Core system info
 
@@ -130,7 +129,10 @@ cp -r . ~
 bash ~/.bin/initial-installation.sh
 ```
 
-### 5. Reboot
+### 5. Validate and reboot
+
+Review `~/.dotfiles-installation.log` and complete the repository validation
+checks. Once the installation has passed validation, reboot:
 
 ```bash
 sudo reboot

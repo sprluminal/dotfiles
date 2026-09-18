@@ -17,7 +17,6 @@
 !.config/kanshi/
 !.config/kitty/
 !.config/lazygit/
-!.config/mako/
 !.config/mimeapps.list
 !.config/mpv/
 !.config/neofetch/
@@ -50,8 +49,6 @@
 !.config/Code/
 !.config/discord/
 !.config/dolphin/
-!.config/vivaldi/
-!.config/wob/
 !.config/xdg-desktop-portal/
 !.config/xdg-desktop-portal-termfilechooser/
 !.config/yazi/
@@ -72,5 +69,6 @@
 !.stylelintrc.json
 !.yamlfmt.yaml
 !.yamllint.yaml
+!AUDIT_CHANGELOG.md
 !LICENSE
 !README.md

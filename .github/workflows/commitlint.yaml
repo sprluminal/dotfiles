@@ -4,10 +4,10 @@ name: commitlint
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 jobs:
   commit_check:
     name: Check commit message

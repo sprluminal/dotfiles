@@ -4,14 +4,14 @@ name: prettier
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '**/*.css'
       - '**/*.json'
       - '**/*.html'
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - '**/*.css'
       - '**/*.json'

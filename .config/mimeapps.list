@@ -61,7 +61,7 @@ application/x-fictionbook+xml=org.pwmt.zathura.desktop
 application/pdf=org.pwmt.zathura.desktop
 application/epub+zip=org.pwmt.zathura.desktop
 application/oxps=org.pwmt.zathura.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-KWPCW1.desktop
+x-scheme-handler/tg=org.telegram.desktop.desktop
 x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/http=firefox-developer-edition.desktop
 x-scheme-handler/https=firefox-developer-edition.desktop
@@ -294,7 +294,7 @@ x-scheme-handler/about=firefox-developer-edition.desktop
 x-scheme-handler/unknown=firefox-developer-edition.desktop
 
 [Added Associations]
-x-scheme-handler/tg=userapp-Telegram Desktop-32KTR1.desktop;userapp-Telegram Desktop-KWPCW1.desktop;
+x-scheme-handler/tg=org.telegram.desktop.desktop;
 x-scheme-handler/http=firefoxdeveloperedition.desktop;
 x-scheme-handler/https=firefoxdeveloperedition.desktop;
 x-scheme-handler/chrome=firefoxdeveloperedition.desktop;

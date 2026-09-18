@@ -4,12 +4,12 @@ name: yamllint
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '**/*.yaml'
   pull_request:
     branches:
-      - master
+      - main
     paths:
       - '**/*.yaml'
 jobs:

@@ -49,6 +49,6 @@
 }
 
 /* Thumb when checked */
-.widget-dnd swiLtch:checked slider {
+.widget-dnd switch:checked slider {
   background-color: var(--dnd-thumb-checked-bg);
 }
