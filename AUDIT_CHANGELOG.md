@@ -1,7 +1,6 @@
 # Audit changelog
 
-This file records the audit work completed on the `audit` branch. The changes
-are uncommitted and have not been pushed.
+This file records the audit work completed on the `audit` branch.
 
 ## Completed cleanup
 
@@ -100,27 +99,18 @@ Decision: **IMPLEMENTED**. Replaced the two `tg` handler references with the
 stable Telegram desktop ID. The association still requires testing on the
 target Arch installation during the validation phase.
 
-### Package snapshots
+### Package manifests and system configuration sources
 
-`.system-config-backup/pkglist.txt` and `aurpkglist.txt` are installer inputs,
-but installed pacman hooks regenerate deployed copies after package install or
-removal. Hook `91` writes explicitly installed native packages; hook `92`
-writes all foreign packages. The installer consumes the checked-in lists before
-installing those hooks. No repository automation synchronizes the regenerated
-copies back to the checkout.
+The package lists are curated installer manifests. The package snapshot hooks
+and live /etc backup hook were removed because they could silently rewrite
+repository inputs after ordinary package transactions or upgrades. The
+installer still consumes the checked-in manifests and static system
+configuration sources. The Electron and .pacnew hooks remain active.
 
-This is operationally consistent but conceptually hybrid: the README presents
-the lists as curated installer manifests while hooks treat them as
-current-machine snapshots. Ordinary package transactions can therefore make
-the deployed snapshots drift from the repository. Decide whether these files
-are (1) curated source-of-truth manifests, (2) generated machine snapshots
-kept outside the repository, or (3) a documented generated-and-reviewed
-commit-back workflow before changing hooks, package lists, or installer logic.
-
-Decision: **NEEDS DESIGN DECISION**.
+Decision: **IMPLEMENTED**.
 
 ## Scope retained
 
-No package lists, pacman hooks, maintenance scripts, system configuration, or
-hardware-specific configuration were changed. No branch was switched or
-created, and no commit or push was made.
+The remaining package manifests, static system configuration sources, Electron
+and .pacnew hooks, maintenance scripts, and hardware-specific configuration
+remain in place. No branch was switched or created during the audit.

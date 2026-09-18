@@ -22,7 +22,6 @@ swayidle
 swaync
 sworkstyle
 swaybar
-wttrbar
 wttr
 pulseaudio
 pulsemixer
