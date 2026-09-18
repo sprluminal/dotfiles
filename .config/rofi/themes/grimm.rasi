@@ -4,8 +4,9 @@
   margin : 0;
   padding : 0;
   spacing : 0;
-  highlight : underline bold @red;
-  font : "my-queue ExtraBold 14";
+  highlight : underline bold @blue;
+  font : "my-queue ExtraBold 13";
+  text-color : @fg1;
 }
 
 configuration {
@@ -15,92 +16,79 @@ configuration {
 }
 
 window {
-  width : 25%;
-  border : 3;
-  border-color : @yellow-bright;
+  width : 32%;
+  location : northwest;
+  x-offset : 10px;
+  y-offset : 10px;
+  border : 2px;
+  border-color : @blue;
   background-color : @bg0;
-  location : center;
-  orientaion : horizontal;
+  padding : 8px;
+  orientation : vertical;
   children : [inputbar, message, listview];
 }
 
 inputbar {
-  background-color : @bg0;
+  padding : 6px 8px;
+  border : 1px;
+  border-color : @bg2;
+  background-color : @bg1;
   children : [prompt,entry];
 }
 
 prompt {
-  margin : 6 0 6 6;
-  padding : 3 6;
-  text-color : @bg0-hard;
-  border : 3;
-  border-color : @red-bright;
-  background-color : @red-bright;
+  margin : 0 8px 0 0;
+  text-color : @blue-bright;
+  background-color : @bg1;
 }
 
 entry {
-  margin : 6;
-  padding : 3 6;
-  text-color : @red-bright;
-  border : 3;
-  border-color : @yellow-bright;
-  background-color : @bg0;
+  text-color : @fg1;
+  background-color : @bg1;
 }
 
 listview {
   lines : 8;
+  spacing : 2px;
   children : [element];
-  margin : 0 6 6 6;
-  padding : 6 6 0 6;
-  border : 3;
-  border-color : @yellow-bright;
+  margin : 8px 0 0 0;
+  padding : 0;
+  border : 0;
   background-color : @bg0;
 }
 
 element {
-  margin : 0 0 6 0 ;
+  padding : 7px 8px;
   background-color : @bg0;
 }
 
-element selected active {
-  text-color : @fg1;
-  background-color : @red;
+element selected {
+  background-color : @bg2;
 }
 
 element-text {
-  padding : 6;
+  padding : 0;
   text-color : @fg1;
   background-color : @bg0;
 }
 
 element-text selected {
-  text-color : @bg0-hard;
-  background-color : @yellow-bright;
-}
-
-element-text selected active {
-  text-color : @fg1;
-  background-color : @red;
+  text-color : @fg0;
+  background-color : @bg2;
 }
 
 element-icon{
-  size : 20;
-  padding : 6;
+  size : 24px;
+  padding : 0 8px 0 0;
   background-color : @bg0;
 }
 
 element-icon selected {
-  text-color : @bg0-hard;
-  background-color : @yellow-bright;
-}
-
-element-icon selected active {
-  text-color : @fg1;
-  background-color : @red;
+  background-color : @bg2;
 }
 
 message {
-  margin : 0;
+  margin : 8px 0 0 0;
   expand : true;
   background-color : @bg0;
   children : [textbox];
@@ -108,13 +96,13 @@ message {
 
 textbox {
   expand : true;
-  padding : 6;
-  border-color : @red;
+  padding : 0;
+  border-color : @bg2;
   background-color : @bg0;
-  text-color : @red;
+  text-color : @fg3;
 }
 
 error-message {
   expand : true;
-  text-color : @bg0-hard;
+  text-color : @red-bright;
 }

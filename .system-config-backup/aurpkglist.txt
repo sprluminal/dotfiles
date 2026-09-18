@@ -5,7 +5,6 @@ debtap
 gnu-netcat
 google-java-format
 gruvbox-material-gtk-theme-git
-gruvbox-material-icon-theme-git
 insomnia-bin
 intellij-idea-ultimate-edition
 lazyjournal

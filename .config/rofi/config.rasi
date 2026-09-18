@@ -8,6 +8,7 @@ configuration {
   cycle: true;
   scroll-method: 1;
   show-icons: true;
+  icon-theme: "Papirus-Dark";
   no-lazy-grab: true;
 
   /* ---------------
@@ -20,7 +21,7 @@ configuration {
      Window/Layout
      -------------- */
   location: 0;
-  sidebar-mode: true;
+  sidebar-mode: false;
   hover-select: true;
   eh: 1;
   terminal: "kitty";

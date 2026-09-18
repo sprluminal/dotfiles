@@ -17,7 +17,7 @@ window#waybar {
   background: none;
   font-family: my-queue;
   font-size: 12pt;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .modules-left,
@@ -43,14 +43,14 @@ window#waybar {
 #battery.warning,
 #network,
 #clock {
-  padding-right: 6pt;
+  padding: 0 6pt;
 }
 
 /* ===== MODULES ===== */
 #custom-launcher {
-  color: @bg0_hard;
+  color: @blue_bright;
   border: 2pt solid @blue;
-  background: @blue_bright;
+  background: @bg0;
   padding: 0pt 6pt;
 }
 
@@ -58,8 +58,8 @@ window#waybar {
 #workspaces button {
   color: @fg1;
   background: @bg0;
-  border: 2pt solid @fg1;
-  margin-right: 3pt;
+  border: 2pt solid @bg3;
+  margin-right: 2pt;
   min-width: 15pt;
   padding: 0 3.75pt;
 }
@@ -69,44 +69,44 @@ window#waybar {
 }
 
 #workspaces button:hover {
-  color: @bg0_hard;
-  background: @purple_bright;
+  color: @purple_bright;
+  background: @bg0;
   border-color: @purple;
 }
 
 #workspaces button.visible,
 #workspaces button.visible:hover {
-  color: @bg0_hard;
+  color: @aqua_bright;
+  background: @bg0;
   border-color: @aqua;
-  background: @aqua_bright;
 }
 
 #workspaces button.urgent {
-  color: @bg0_hard;
+  color: @red_bright;
+  background: @bg0;
   border-color: @red;
-  background: @red_bright;
 }
 
 /* ===== INDIVIDUAL MODULE STYLES ===== */
 #window {
-  border: 2pt solid @purple_bright;
+  border: 2pt solid @purple;
 }
 
 #tray {
-  border: 2pt solid @orange_bright;
+  border: 2pt solid @bg3;
   padding: 0 6pt;
 }
 
 #disk {
-  border: 2pt solid @aqua_bright;
+  border: 2pt solid @bg3;
 }
 
 #cpu {
-  border: 2pt solid @orange_bright;
+  border: 2pt solid @bg3;
 }
 
 #custom-cpu_temp {
-  border: 2pt solid @yellow_bright;
+  border: 2pt solid @bg3;
 }
 
 #custom-cpu_temp.critical {
@@ -119,15 +119,15 @@ window#waybar {
 }
 
 #backlight {
-  border: 2pt solid @yellow_bright;
+  border: 2pt solid @bg3;
 }
 
 #custom-memory {
-  border: 2pt solid @blue;
+  border: 2pt solid @bg3;
 }
 
 #pulseaudio {
-  border: 2pt solid @blue_bright;
+  border: 2pt solid @bg3;
 }
 
 #pulseaudio.muted {
@@ -136,7 +136,7 @@ window#waybar {
 }
 
 #battery {
-  border: 2pt solid @aqua_bright;
+  border: 2pt solid @bg3;
 }
 
 #battery.critical {
@@ -144,15 +144,15 @@ window#waybar {
 }
 
 #battery.warning {
-  border: 2pt solid @orange_bright;
+  border: 2pt solid @orange;
 }
 
 #clock {
-  border: 2pt solid @aqua_bright;
+  border: 2pt solid @bg3;
 }
 
 #network {
-  border: 2pt solid @purple_bright;
+  border: 2pt solid @bg3;
 }
 
 #network.disconnected {

@@ -40,8 +40,8 @@ few extra app configs.
   Its leader keys follow `.ideavimrc` so the two stay consistent. See
   [.config/nvim/.github/README.md](.config/nvim/.github/README.md).
 - Extra app configs not present upstream: VS Code (`.config/Code/User`),
-  Discord (`.config/discord`), and a Dolphin gruvbox-material theme
-  (`.config/dolphin`).
+  Discord (`.config/discord`), and a Dolphin Gruvbox Material color theme with
+  Papirus icons (`.config/dolphin`).
 
 ## :brain: Core system info
 
@@ -53,7 +53,8 @@ few extra app configs.
 - Text Editor: [neovim](https://github.com/neovim/neovim/) (config in
   `.config/nvim`, see its [README](.config/nvim/.github/README.md))
 - App Launcher: [rofi](https://github.com/lbonn/rofi/)
-- File Manager: [yazi](https://github.com/sxyazi/yazi/)
+- File Manager: [Dolphin](https://apps.kde.org/dolphin/) (graphical), with
+  [Yazi](https://github.com/sxyazi/yazi/) retained as the terminal file manager
 - Notification Manager: [swaync](https://github.com/ErikReider/SwayNotificationCenter/)
 - Colorscheme: [Gruvbox-material](https://github.com/sainnhe/gruvbox-material/)
 
