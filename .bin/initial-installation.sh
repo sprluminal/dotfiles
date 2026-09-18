@@ -204,8 +204,9 @@ for d in "${required_dirs[@]}"; do
   check_directory "$d"
 done
 
-# Packages check
-required_packages=("git" "curl")
+# Git is needed before the package list can be installed. Other tools used
+# later by this script, such as curl, are installed from that package list.
+required_packages=("git")
 for pkg in "${required_packages[@]}"; do
   check_package "$pkg"
 done
@@ -271,22 +272,19 @@ if [ -f "${HOME}/.system-config-backup/aurpkglist.txt" ]; then
   # Installing the AUR helper (paru)
   print_log_message $info_color "paru installation initiated..."
   safe_cd "${HOME}"
-  
-  if [ -d "paru" ]; then
-    rm -rf paru
-    print_log_message $warning_color "Removed existing paru directory."
-  fi
-  
-  retry_command $MAX_RETRIES git clone https://aur.archlinux.org/paru.git
+
+  paru_build_dir=$(mktemp -d "${TMPDIR:-/tmp}/dotfiles-paru.XXXXXX") || error_exit "Failed to create temporary paru build directory."
+  trap 'if [ -n "$paru_build_dir" ]; then rm -rf -- "$paru_build_dir"; fi' EXIT
+
+  retry_command $MAX_RETRIES git clone https://aur.archlinux.org/paru.git "$paru_build_dir/paru"
   print_log_message $success_color "paru repo has been cloned."
   
-  safe_cd paru
+  safe_cd "$paru_build_dir/paru"
   retry_command $MAX_RETRIES makepkg -si --noconfirm
   print_log_message $success_color "paru has been installed."
-  
-  safe_cd ..
-  rm -rf paru
-  print_log_message $success_color "paru repo has been deleted."
+
+  safe_cd "${HOME}"
+  print_log_message $success_color "temporary paru build directory scheduled for cleanup."
   
   # Installing AUR packages
   print_log_message $info_color "AUR packages installation initiated..."
@@ -311,7 +309,9 @@ print_log_message $success_color "fish shell is installed."
 
 # Create fish config directory if it doesn't exist
 if [ ! -d "${HOME}/.config/fish" ]; then
-  mkdir -p "${HOME}/.config/fish"
+  if ! mkdir -p "${HOME}/.config/fish"; then
+    error_exit "Failed to create fish config directory."
+  fi
   print_log_message $info_color "created fish config directory."
 fi
 
@@ -333,18 +333,13 @@ print_log_message $info_color "pacman hooks copying initiated..."
 
 safe_mkdir "/etc/pacman.d/hooks"
 
-# Check if hook files exist before copying
-if [ ! "$(ls -A "${HOME}/.system-config-backup/pacman/"*.hook 2>/dev/null)" ]; then
-  print_log_message $warning_color "No pacman hooks found at ${HOME}/.system-config-backup/pacman/"
-  log_to_file "Warning: No .hook files found in pacman backup directory"
-else
-  if ! sudo cp "${HOME}/.system-config-backup/pacman"/*.hook /etc/pacman.d/hooks/ 2>&1; then
-    print_log_message $warning_color "Failed to copy some pacman hooks."
-    log_to_file "Warning: Pacman hooks copy encountered issues."
-  else
-    print_log_message $success_color "pacman hooks have been copied."
-  fi
+# The required hook files were checked above; a copy failure leaves the
+# installed system without the package-maintenance machinery this repository
+# depends on and must abort the installation.
+if ! sudo cp "${HOME}/.system-config-backup/pacman"/*.hook /etc/pacman.d/hooks/ 2>&1; then
+  error_exit "Failed to copy pacman hooks."
 fi
+print_log_message $success_color "pacman hooks have been copied."
 
 # System config files
 print_log_message $info_color "system configs copying initiated..."
@@ -418,9 +413,8 @@ for timer in "${local_timers[@]}"; do
   fi
 done
 
-print_log_message $success_color "system installation successfully completed."
+print_log_message $success_color "system installation completed."
 echo ""
 echo "Installation log saved to: $LOG_FILE"
-echo "Please review the log for any warnings or errors."
-echo "After reviewing, please reboot your computer: sudo reboot"
+echo "Review the log and complete repository validation before rebooting."
 echo ""
