@@ -15,15 +15,13 @@
 # IMPORTANT — read before running:
 # Most of .bin/ and all of .system-config-backup/ are NOT one-time install
 # scaffolding. They're live, permanently-required parts of the rice:
-#   - .system-config-backup/pkglist.txt and aurpkglist.txt are rewritten by
-#     pacman hooks 91/92 on every future package install/remove.
-#   - .system-config-backup/pacman/*.conf, systemd/*.conf, tlp/tlp.conf,
-#     greetd/config.toml, and reflector/reflector.conf are re-synced from
-#     /etc by 95-backup-configs.hook (-> .bin/backup-configs.sh) on every
-#     upgrade, and the *directories* under .system-config-backup/ must
-#     exist for that hook to have anywhere to write.
-#   - .bin/backup-configs.sh, check-pacnew.sh, and update-electron-symlinks.sh
-#     are invoked directly by pacman hooks 95, 94, and 93.
+#   - .system-config-backup/pkglist.txt and aurpkglist.txt are curated
+#     installer manifests and are not rewritten automatically.
+#   - .system-config-backup/pacman/pacman.conf, the systemd/tlp/greetd/
+#     reflector files, and audio.conf are installer inputs for their matching
+#     system configuration files.
+#   - .bin/check-pacnew.sh and update-electron-symlinks.sh are invoked directly
+#     by pacman hooks 94 and 93.
 #   - .bin/random-background.sh, cliphist-rofi.sh, power-menu.sh, and
 #     wlsunset-toggle.sh are invoked by sway/waybar/rofi at runtime, every
 #     session.
@@ -104,7 +102,7 @@ else
 fi
 
 section "Pacman hooks installed to /etc"
-for hook in 91-create-backup 92-create-aur-backup 93-electron 94-check-pacnew 95-backup-configs; do
+for hook in 93-electron 94-check-pacnew; do
   if [[ -f "/etc/pacman.d/hooks/${hook}.hook" ]]; then
     pass "${hook}.hook present in /etc/pacman.d/hooks"
   else
@@ -132,13 +130,13 @@ for src in "${!system_configs[@]}"; do
   fi
 done
 
-section "system-config-backup directory structure (required by hooks 91/92/95)"
+section "system-config-backup directory structure (required by installer)"
 for d in pacman systemd tlp greetd reflector; do
   dir="$HOME/.system-config-backup/$d"
   if [[ -d "$dir" ]]; then
     pass "$dir exists"
   else
-    fail "$dir is MISSING — the matching pacman hook will silently fail to write here"
+    fail "$dir is MISSING — the installer cannot copy its system configuration files"
   fi
 done
 
@@ -315,8 +313,8 @@ for pair in "${to_archive[@]}"; do
 done
 
 printf "\n${GREEN}Cleanup complete.${RESET}\n"
-printf "Kept in place (required by pacman hooks / sway / waybar / rofi / your fish aliases):\n"
-printf "  .bin/backup-configs.sh, check-pacnew.sh, update-electron-symlinks.sh\n"
+printf "Kept in place (required by installer / pacman hooks / sway / waybar / rofi / your fish aliases):\n"
+printf "  .bin/check-pacnew.sh, update-electron-symlinks.sh\n"
 printf "  .bin/random-background.sh, cliphist-rofi.sh, power-menu.sh, wlsunset-toggle.sh\n"
 printf "  .bin/maintenance.sh, upgrade-system.sh\n"
-printf "  .system-config-backup/ (all package lists and hook-synced config copies)\n"
+printf "  .system-config-backup/ (curated package manifests and installer config copies)\n"

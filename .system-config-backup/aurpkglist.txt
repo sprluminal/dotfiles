@@ -47,10 +47,7 @@ ungoogled-chromium-bin
 vesktop-bin
 viber
 visual-studio-code-bin
-waybar-crypto
-waybar-module-pacman-updates-git
 wg-cmd
 woeusb
-wttrbar
 xcursor-simp1e-gruvbox-dark
 xdg-desktop-portal-termfilechooser-hunkyburrito-git

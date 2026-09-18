@@ -2,11 +2,6 @@
 
 This directory contains scripts that allow me to automate some of my work.
 
-- **backup-configs.sh** - copies the configuration files in .system-config-backup,
-  which are not in $XDG_CONFIG but in other places like /etc. The script is
-  automatically started by the pacman hook 95-backup-configs.hook, which
-  resolves the invoking user's home directory automatically and passes it in
-  as an argument - no manual editing needed.
 - **check-pacnew.sh** - searches for .pacnew files and reports if any are
   present. It is started automatically by the pacman hook 94-check-pacnew.hook.
 - **cliphist-rofi.sh** - allows me to control clipboard history with rofi.

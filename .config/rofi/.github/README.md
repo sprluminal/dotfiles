@@ -9,6 +9,16 @@ Unfortunately, the original rofi doesn't support Wayland. Therefore, I use the
 
 To execute rofi use hotkey `Win+d`.
 
+## Where to change things
+
+- `config.rasi` contains the enabled modes, global behavior, and the default
+  launcher theme.
+- `themes/grimm.rasi` controls the application launcher layout and appearance.
+- `themes/powermenu.rasi` controls the power menu; its behavior is in
+  `.bin/power-menu.sh`.
+- `themes/colors.rasi` is the generated shared Gruvbox palette. Change its
+  contrast with `.bin/set-contrast.sh` rather than editing it directly.
+
 ## Modes
 
 - [rofi-calc](https://github.com/svenstaro/rofi-calc) is rofi's mode as a

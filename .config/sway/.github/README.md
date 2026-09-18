@@ -11,15 +11,19 @@ server. I chose it because of: lightweight, tiling, customization, minimalism.
 Instead of configuring the entire window manger in a single file, I chose the
 modular configuration path.
 
-Files list:
+Where to change things:
 
-- **config** - the basic configuration file which contains the inclusion of all
-  specific files and the assignment of the most necessary settings.
-- **config.d/daemons.conf** - running all necessary background processes.
-- **config.d/floating.conf** - rules of behavior of floating windows.
-- **config.d/input.conf** - settings for input devices such as keyboard and touchpad.
-- **config.d/keybinds.conf** - keybind settings.
-- **config.d/theme.conf** - colorscheme, themes and other visual settings.
+- **config** - top-level variables and the `config.d` includes.
+- **config.d/colors.conf** - the generated Gruvbox palette. Use
+  `.bin/set-contrast.sh` to change contrast instead of editing generated
+  palette files by hand.
+- **config.d/theme.conf** - borders, gaps, titlebars, client colors, and other
+  visual window settings.
+- **config.d/keybinds.conf** - keyboard shortcuts and application launchers.
+- **config.d/daemons.conf** - startup services, background utilities, and the
+  wallpaper startup command.
+- **config.d/input.conf** - keyboard and touchpad settings.
+- **config.d/floating.conf** - floating-window and special application rules.
 
 ## Hotkeys
 
@@ -57,7 +61,7 @@ Files list:
 | Screenshot select area                            | Print               |
 | Screenshot current container                      | mod+Print           |
 | Screenshot current workspace                      | mod+Shift+Print     |
-| Execute nnn file manager                          | mod+t               |
+| Execute Dolphin file manager                      | mod+t               |
 | Execute cool-retro-term                           | mod+Shift+Return    |
 | Execute swaylock                                  | mod+Escape          |
 | Execute SwayNC notification panel                 | mod+n               |

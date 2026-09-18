@@ -1,21 +1,14 @@
-# System config backups
+# System config sources
 
-This directory contains backups of system and configuration files that are not
-in the home directory. It also contains lists of installed packages.
+This directory contains installer sources for system configuration files that
+are not in the home directory. It also contains curated package manifests.
 
 - **greetd** - contains the configuration of the greetd login manager.
-- **pacman** - contains the configuration file and all the necessary pacman hooks.
-  - *91-create-backup.hook* - records a list of all manually installed packages,
-    without AUR packages and dependencies. File - .system-config-backup/pkglist.txt.
-  - *92-create-backup.hook* - records a list of all manually installed AUR packages.
-    File - .system-config-backup/aurpkglist.txt.
-  - *93-electron.hook* - create missing and remove unnecessary symlinks for each
-    version of electron.
-  - *94-check-pacnew.hook* - searches for .pacnew files and reports if any are
-    present.
-  - *95-backup-configs.hook* - copies the configuration files in .system-config-backup.
+- **pacman** - contains the pacman configuration and the two retained hooks:
+  *93-electron.hook* updates Electron flag symlinks, and *94-check-pacnew.hook*
+  reports pending .pacnew files.
 - **reflector** - contains the configuration of the reflector.
 - **systemd** - contains the configuration of the systemd.
 - **tlp** - contains the configuration of the tlp laptop battery utility.
-- **aurpkglist** - contains a list of all manually installed AUR packages.
-- **pkglist** - contains a list of all manually installed official packages.
+- **aurpkglist** - curated AUR packages installed by the installer.
+- **pkglist** - curated official packages installed by the installer.

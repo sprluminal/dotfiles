@@ -23,13 +23,12 @@ few extra app configs.
   `postgresql`, `maven`, `groovy`, `latex2html`, `sqlfluff`). If you actually
   need any of these, just add the package name back to `pkglist.txt` before
   running the installer, or `sudo pacman -S <pkg>` afterwards.
-- The pacman hooks (`.system-config-backup/pacman/9*.hook`) and
+- The retained pacman hooks (93-electron.hook and 94-check-pacnew.hook) and
   `.config/sway/config.d/daemons.conf` no longer hardcode `/bin/zsh` or a
   specific user's home directory (`/home/celtic`). The hooks now resolve the
   invoking user via `$SUDO_USER`/`logname` and look up their home with
   `getent passwd` at run time, so there's nothing to edit by hand — see
-  `.bin/backup-configs.sh` and `.bin/update-electron-symlinks.sh`, which now
-  accept the resolved home directory as an argument.
+  `.bin/check-pacnew.sh` and `.bin/update-electron-symlinks.sh`.
 - A self-contained **Neovim** configuration in `.config/nvim`. Upstream
   pulled this in from a separate repository
   ([CelticBoozer/nvim-config](https://github.com/CelticBoozer/nvim-config)),
@@ -57,6 +56,32 @@ few extra app configs.
   [Yazi](https://github.com/sxyazi/yazi/) retained as the terminal file manager
 - Notification Manager: [swaync](https://github.com/ErikReider/SwayNotificationCenter/)
 - Colorscheme: [Gruvbox-material](https://github.com/sainnhe/gruvbox-material/)
+
+## Configuration map
+
+Start here when changing a setting:
+
+| Area | Source of truth |
+| --- | --- |
+| Sway variables and includes | [`.config/sway/config`](.config/sway/config) |
+| Sway colors | [`.config/sway/config.d/colors.conf`](.config/sway/config.d/colors.conf); use [`.bin/set-contrast.sh`](.bin/set-contrast.sh) for contrast changes |
+| Sway borders, gaps, titlebars, client colors, and visual settings | [`.config/sway/config.d/theme.conf`](.config/sway/config.d/theme.conf) |
+| Sway keybindings | [`.config/sway/config.d/keybinds.conf`](.config/sway/config.d/keybinds.conf) |
+| Sway startup services and wallpaper startup | [`.config/sway/config.d/daemons.conf`](.config/sway/config.d/daemons.conf) |
+| Sway input devices | [`.config/sway/config.d/input.conf`](.config/sway/config.d/input.conf) |
+| Floating-window rules | [`.config/sway/config.d/floating.conf`](.config/sway/config.d/floating.conf) |
+| Wallpapers | [`.wallpaper`](.wallpaper) and [`.bin/random-background.sh`](.bin/random-background.sh) |
+| Waybar modules and actions | [`.config/waybar/config`](.config/waybar/config) |
+| Waybar layout and module presentation | [`.config/waybar/style.css`](.config/waybar/style.css) |
+| Waybar colors | [`.config/waybar/colors.css`](.config/waybar/colors.css); generated with [`.bin/set-contrast.sh`](.bin/set-contrast.sh) |
+| Rofi modes and launcher behavior | [`.config/rofi/config.rasi`](.config/rofi/config.rasi) |
+| Rofi launcher appearance | [`.config/rofi/themes/grimm.rasi`](.config/rofi/themes/grimm.rasi) |
+| Rofi power menu appearance and behavior | [`.config/rofi/themes/powermenu.rasi`](.config/rofi/themes/powermenu.rasi) and [`.bin/power-menu.sh`](.bin/power-menu.sh) |
+| Shared Gruvbox palette | [`.bin/set-contrast.sh`](.bin/set-contrast.sh) and its generated color files |
+
+Other applications follow the same pattern: their main configuration is in
+their `.config/<application>` directory, while application-specific README
+files describe behavior and keybindings.
 
 ## :rocket: Installation
 
