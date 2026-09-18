@@ -30,6 +30,15 @@ few extra app configs.
   `getent passwd` at run time, so there's nothing to edit by hand — see
   `.bin/backup-configs.sh` and `.bin/update-electron-symlinks.sh`, which now
   accept the resolved home directory as an argument.
+- A self-contained **Neovim** configuration in `.config/nvim`. Upstream
+  pulled this in from a separate repository
+  ([CelticBoozer/nvim-config](https://github.com/CelticBoozer/nvim-config)),
+  but the fork never carried it over - there was no `.config/nvim`, no
+  submodule and no `.gitignore` entry for it. This one is written from
+  scratch: lazy.nvim, LSP for Python, shell and HTML, blink completion,
+  conform formatting, gitsigns, an integrated terminal and Python debugging.
+  Its leader keys follow `.ideavimrc` so the two stay consistent. See
+  [.config/nvim/.github/README.md](.config/nvim/.github/README.md).
 - Extra app configs not present upstream: VS Code (`.config/Code/User`),
   Discord (`.config/discord`), Dolphin gruvbox-material theme
   (`.config/dolphin`), and a Vivaldi gruvbox-material stylesheet
@@ -43,8 +52,7 @@ few extra app configs.
 - Terminal Emulator: [kitty](https://github.com/kovidgoyal/kitty/)
 - Panel: [waybar](https://github.com/Alexays/Waybar/)
 - Text Editor: [neovim](https://github.com/neovim/neovim/) (config in
-  `.config/nvim`, pulled in from
-  [CelticBoozer/nvim-config](https://github.com/CelticBoozer/nvim-config))
+  `.config/nvim`, see its [README](.config/nvim/.github/README.md))
 - App Launcher: [rofi](https://github.com/lbonn/rofi/)
 - File Manager: [yazi](https://github.com/sxyazi/yazi/)
 - Notification Manager: [swaync](https://github.com/ErikReider/SwayNotificationCenter/)
